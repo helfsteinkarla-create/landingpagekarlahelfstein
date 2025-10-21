@@ -72,10 +72,10 @@ export default function Home() {
             Karla Helfstein
           </h1>
           <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 md:mx-0 mx-auto mb-6"></div>
-          <p className="text-2xl text-gray-700 mb-8">
+          <p className="text-2xl text-gray-100 mb-8">
             Especialista em Vendas de Consórcio
           </p>
-          <p className="text-lg text-gray-600 mb-12">
+          <p className="text-lg text-gray-300 mb-12">
             Aquisição de Imóvel • Veículo • Aumento de Patrimônio
           </p>
 
@@ -132,7 +132,7 @@ export default function Home() {
         className={`py-20 px-4 fade-in-up ${isVisible.videos ? "visible" : ""}`}
       >
         <div className="container">
-          <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
+          <h2 className="text-4xl font-bold text-center mb-12 text-white">
             Vídeo Aulas
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -147,7 +147,7 @@ export default function Home() {
                     allowFullScreen
                   ></iframe>
                 </div>
-                <h3 className="text-lg font-semibold text-center text-gray-800">
+                <h3 className="text-lg font-semibold text-center text-white">
                   {video.title}
                 </h3>
               </div>
@@ -164,10 +164,10 @@ export default function Home() {
       >
         <div className="container max-w-2xl">
           <div className="glass-card rounded-3xl p-10">
-            <h2 className="text-4xl font-bold text-center mb-4 text-gray-800">
-              Demonstre seu Interesse
+            <h2 className="text-4xl font-bold text-center mb-4 text-white">
+              Formulário de Interesse
             </h2>
-            <p className="text-center text-gray-600 mb-8">
+            <p className="text-center text-gray-300 mb-8">
               Preencha o formulário abaixo e entraremos em contato
             </p>
             <InterestForm />
@@ -183,7 +183,7 @@ export default function Home() {
       >
         <div className="container">
           <div className="glass-card rounded-3xl p-12 max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
+            <h2 className="text-4xl font-bold text-center mb-12 text-white">
               Quem Sou Eu
             </h2>
             
@@ -198,7 +198,7 @@ export default function Home() {
                 </div>
               </div>
               
-              <div className="prose prose-lg max-w-none text-gray-700 order-1 md:order-2">
+              <div className="prose prose-lg max-w-none text-gray-100 order-1 md:order-2">
               <p className="text-lg leading-relaxed mb-6">
                 Olá! Sou <strong>Karla Helfstein</strong>, especialista em vendas de consórcio
                 com anos de experiência no mercado. Minha missão é ajudar você a realizar
@@ -210,7 +210,7 @@ export default function Home() {
                 excelente forma de <strong>investimento</strong> e aumento de patrimônio.
               </p>
 
-              <h3 className="text-2xl font-bold mb-4 text-gray-800">
+              <h3 className="text-2xl font-bold mb-4 text-white">
                 Por que escolher o consórcio?
               </h3>
               <ul className="space-y-3 mb-8">
@@ -232,7 +232,7 @@ export default function Home() {
                 </li>
               </ul>
 
-              <p className="text-lg text-center font-semibold text-gray-800">
+              <p className="text-lg text-center font-semibold text-white">
                 Vamos juntos realizar seus objetivos!
               </p>
               </div>
@@ -240,23 +240,23 @@ export default function Home() {
 
             {/* Depoimentos */}
             <div className="mt-12">
-              <h3 className="text-2xl font-bold text-center mb-8 text-gray-800">
+              <h3 className="text-2xl font-bold text-center mb-8 text-white">
                 Clientes Satisfeitos
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-white/50 rounded-xl p-6">
-                  <p className="text-gray-700 italic mb-4">
+                  <p className="text-gray-100 italic mb-4">
                     "Excelente profissional! Me ajudou a conquistar meu primeiro imóvel
                     de forma planejada e sem comprometer meu orçamento."
                   </p>
-                  <p className="font-semibold text-gray-800">- Maria Silva</p>
+                  <p className="font-semibold text-white">- Maria Silva</p>
                 </div>
                 <div className="bg-white/50 rounded-xl p-6">
-                  <p className="text-gray-700 italic mb-4">
+                  <p className="text-gray-100 italic mb-4">
                     "Karla é muito atenciosa e explicou todo o processo com clareza.
                     Recomendo!"
                   </p>
-                  <p className="font-semibold text-gray-800">- João Santos</p>
+                  <p className="font-semibold text-white">- João Santos</p>
                 </div>
               </div>
             </div>
@@ -269,22 +269,22 @@ export default function Home() {
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4 text-gray-800">
+              <h3 className="text-xl font-bold mb-4 text-white">
                 Atma Corretora de Seguros Ltda.
               </h3>
-              <p className="text-gray-700 mb-2">R. Benedito Bueno, Chácara C</p>
-              <p className="text-gray-700 mb-2">Vila São Simão</p>
-              <p className="text-gray-700">Indiara - GO, 75955-000</p>
+              <p className="text-gray-100 mb-2">R. Benedito Bueno, Chácara C</p>
+              <p className="text-gray-100 mb-2">Vila São Simão</p>
+              <p className="text-gray-100">Indiara - GO, 75955-000</p>
             </div>
             <div>
-              <h3 className="text-xl font-bold mb-4 text-gray-800">Contato</h3>
-              <p className="text-gray-700 mb-2">
+              <h3 className="text-xl font-bold mb-4 text-white">Contato</h3>
+              <p className="text-gray-100 mb-2">
                 WhatsApp:{" "}
                 <a href="https://wa.me/5562983136222" className="text-blue-600 hover:underline">
                   (62) 98313-6222
                 </a>
               </p>
-              <p className="text-gray-700 mb-4">
+              <p className="text-gray-100 mb-4">
                 Email:{" "}
                 <a href="mailto:karla@atmacorretora.com.br" className="text-blue-600 hover:underline">
                   karla@atmacorretora.com.br
@@ -318,7 +318,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="border-t border-gray-300 mt-8 pt-8 text-center text-gray-600">
+          <div className="border-t border-gray-300 mt-8 pt-8 text-center text-gray-300">
             <p>© 2025 Karla Helfstein - Todos os direitos reservados</p>
           </div>
         </div>
