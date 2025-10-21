@@ -30,19 +30,18 @@ export default function InterestForm() {
     setIsSubmitting(true);
 
     try {
-      // Enviar para Netlify Forms (funciona automaticamente)
-      const netlifyForm = new FormData();
-      netlifyForm.append("form-name", "interesse-consorcio");
-      netlifyForm.append("nome", formData.nome);
-      netlifyForm.append("email", formData.email);
-      netlifyForm.append("whatsapp", formData.whatsapp);
-      netlifyForm.append("produtos", formData.produtos.join(", "));
-
-      await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(netlifyForm as any).toString(),
+      // Enviar para Netlify Function que salva no Google Sheets
+      const response = await fetch('/.netlify/functions/submit-lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
+
+      if (!response.ok) {
+        throw new Error('Erro ao enviar formulário');
+      }
 
       // Criar mensagem para WhatsApp
       const message = `Olá! Tenho interesse em consórcio.
@@ -70,6 +69,7 @@ export default function InterestForm() {
       });
     } catch (error) {
       console.error("Erro ao enviar formulário:", error);
+      toast.error("Erro ao enviar. Redirecionando para WhatsApp...");
       
       // Mesmo com erro, redirecionar para WhatsApp
       const message = `Olá! Tenho interesse em consórcio.
@@ -81,7 +81,6 @@ export default function InterestForm() {
 
       const whatsappUrl = `https://api.whatsapp.com/send/?phone=5562983136222&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
       
-      toast.success("Redirecionando para WhatsApp...");
       window.open(whatsappUrl, "_blank");
     } finally {
       setIsSubmitting(false);
@@ -104,24 +103,7 @@ export default function InterestForm() {
   ];
 
   return (
-    <form 
-      onSubmit={handleSubmit} 
-      className="space-y-6"
-      name="interesse-consorcio"
-      method="POST"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-    >
-      {/* Hidden field for Netlify Forms */}
-      <input type="hidden" name="form-name" value="interesse-consorcio" />
-      
-      {/* Honeypot field for spam protection */}
-      <div style={{ display: "none" }}>
-        <label>
-          Don't fill this out if you're human: <input name="bot-field" />
-        </label>
-      </div>
-
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-2">
         <Label htmlFor="nome">Nome Completo</Label>
         <Input
