@@ -158,7 +158,24 @@ export default function Home() {
         </div>
       </section>
 
-
+      {/* Formulário de Interesse Section */}
+      <section
+        ref={sectionsRef.form}
+        data-section="form"
+        className={`py-20 px-4 fade-in-up ${isVisible.form ? "visible" : ""}`}
+      >
+        <div className="container">
+          <div className="glass-card rounded-3xl p-12 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-center mb-4 text-white">
+              Manifeste seu Interesse
+            </h2>
+            <p className="text-center text-gray-300 mb-8">
+              Preencha o formulário abaixo e entraremos em contato
+            </p>
+            <InterestForm />
+          </div>
+        </div>
+      </section>
 
       {/* Quem Sou Eu Section */}
       <section

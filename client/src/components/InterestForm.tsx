@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { trpc } from "@/lib/trpc";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -12,37 +13,11 @@ export default function InterestForm() {
     whatsapp: "",
     produtos: [] as string[],
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!formData.nome || !formData.email || !formData.whatsapp) {
-      toast.error("Preencha todos os campos obrigatórios");
-      return;
-    }
-
-    if (formData.produtos.length === 0) {
-      toast.error("Selecione pelo menos um produto de interesse");
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      // Enviar para Netlify Function que salva no Google Sheets
-      const response = await fetch('/.netlify/functions/submit-lead', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Erro ao enviar formulário');
-      }
-
+  const createLead = trpc.leads.create.useMutation({
+    onSuccess: () => {
+      toast.success("Interesse enviado com sucesso!");
+      
       // Criar mensagem para WhatsApp
       const message = `Olá! Tenho interesse em consórcio.
 
@@ -52,8 +27,6 @@ export default function InterestForm() {
 *Produtos de Interesse:* ${formData.produtos.join(", ")}`;
 
       const whatsappUrl = `https://api.whatsapp.com/send/?phone=5562983136222&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
-      
-      toast.success("Interesse enviado com sucesso!");
       
       // Redirecionar para WhatsApp
       setTimeout(() => {
@@ -67,7 +40,8 @@ export default function InterestForm() {
         whatsapp: "",
         produtos: [],
       });
-    } catch (error) {
+    },
+    onError: (error) => {
       console.error("Erro ao enviar formulário:", error);
       toast.error("Erro ao enviar. Redirecionando para WhatsApp...");
       
@@ -82,9 +56,23 @@ export default function InterestForm() {
       const whatsappUrl = `https://api.whatsapp.com/send/?phone=5562983136222&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
       
       window.open(whatsappUrl, "_blank");
-    } finally {
-      setIsSubmitting(false);
+    },
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.nome || !formData.email || !formData.whatsapp) {
+      toast.error("Preencha todos os campos obrigatórios");
+      return;
     }
+
+    if (formData.produtos.length === 0) {
+      toast.error("Selecione pelo menos um produto de interesse");
+      return;
+    }
+
+    createLead.mutate(formData);
   };
 
   const handleCheckboxChange = (produto: string, checked: boolean) => {
@@ -165,9 +153,9 @@ export default function InterestForm() {
       <Button
         type="submit"
         className="w-full glass-button"
-        disabled={isSubmitting}
+        disabled={createLead.isPending}
       >
-        {isSubmitting ? "Enviando..." : "Enviar Interesse"}
+        {createLead.isPending ? "Enviando..." : "Enviar Interesse"}
       </Button>
     </form>
   );
