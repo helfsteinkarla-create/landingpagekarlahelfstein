@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { trpc } from "@/lib/trpc";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -13,38 +12,9 @@ export default function InterestForm() {
     whatsapp: "",
     produtos: [] as string[],
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const createLead = trpc.leads.create.useMutation({
-    onSuccess: () => {
-      const message = `Olá! Tenho interesse em consórcio.
-
-*Nome:* ${formData.nome}
-*Email:* ${formData.email}
-*WhatsApp:* ${formData.whatsapp}
-*Produtos de Interesse:* ${formData.produtos.join(", ")}`;
-
-      const whatsappUrl = `https://api.whatsapp.com/send/?phone=5562983136222&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
-      
-      toast.success("Interesse enviado com sucesso!");
-      
-      setTimeout(() => {
-        window.open(whatsappUrl, "_blank");
-      }, 500);
-
-      setFormData({
-        nome: "",
-        email: "",
-        whatsapp: "",
-        produtos: [],
-      });
-    },
-    onError: (error) => {
-      toast.error("Erro ao enviar formulário. Tente novamente.");
-      console.error(error);
-    },
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!formData.nome || !formData.email || !formData.whatsapp) {
@@ -57,7 +27,65 @@ export default function InterestForm() {
       return;
     }
 
-    createLead.mutate(formData);
+    setIsSubmitting(true);
+
+    try {
+      // Enviar para Netlify Forms (funciona automaticamente)
+      const netlifyForm = new FormData();
+      netlifyForm.append("form-name", "interesse-consorcio");
+      netlifyForm.append("nome", formData.nome);
+      netlifyForm.append("email", formData.email);
+      netlifyForm.append("whatsapp", formData.whatsapp);
+      netlifyForm.append("produtos", formData.produtos.join(", "));
+
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(netlifyForm as any).toString(),
+      });
+
+      // Criar mensagem para WhatsApp
+      const message = `Olá! Tenho interesse em consórcio.
+
+*Nome:* ${formData.nome}
+*Email:* ${formData.email}
+*WhatsApp:* ${formData.whatsapp}
+*Produtos de Interesse:* ${formData.produtos.join(", ")}`;
+
+      const whatsappUrl = `https://api.whatsapp.com/send/?phone=5562983136222&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
+      
+      toast.success("Interesse enviado com sucesso!");
+      
+      // Redirecionar para WhatsApp
+      setTimeout(() => {
+        window.open(whatsappUrl, "_blank");
+      }, 500);
+
+      // Limpar formulário
+      setFormData({
+        nome: "",
+        email: "",
+        whatsapp: "",
+        produtos: [],
+      });
+    } catch (error) {
+      console.error("Erro ao enviar formulário:", error);
+      
+      // Mesmo com erro, redirecionar para WhatsApp
+      const message = `Olá! Tenho interesse em consórcio.
+
+*Nome:* ${formData.nome}
+*Email:* ${formData.email}
+*WhatsApp:* ${formData.whatsapp}
+*Produtos de Interesse:* ${formData.produtos.join(", ")}`;
+
+      const whatsappUrl = `https://api.whatsapp.com/send/?phone=5562983136222&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
+      
+      toast.success("Redirecionando para WhatsApp...");
+      window.open(whatsappUrl, "_blank");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCheckboxChange = (produto: string, checked: boolean) => {
@@ -76,11 +104,29 @@ export default function InterestForm() {
   ];
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form 
+      onSubmit={handleSubmit} 
+      className="space-y-6"
+      name="interesse-consorcio"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      {/* Hidden field for Netlify Forms */}
+      <input type="hidden" name="form-name" value="interesse-consorcio" />
+      
+      {/* Honeypot field for spam protection */}
+      <div style={{ display: "none" }}>
+        <label>
+          Don't fill this out if you're human: <input name="bot-field" />
+        </label>
+      </div>
+
       <div className="space-y-2">
         <Label htmlFor="nome">Nome Completo</Label>
         <Input
           id="nome"
+          name="nome"
           type="text"
           placeholder="Seu nome"
           value={formData.nome}
@@ -93,6 +139,7 @@ export default function InterestForm() {
         <Label htmlFor="email">Email</Label>
         <Input
           id="email"
+          name="email"
           type="email"
           placeholder="seu@email.com"
           value={formData.email}
@@ -105,6 +152,7 @@ export default function InterestForm() {
         <Label htmlFor="whatsapp">WhatsApp</Label>
         <Input
           id="whatsapp"
+          name="whatsapp"
           type="tel"
           placeholder="(62) 98313-6222"
           value={formData.whatsapp}
@@ -119,6 +167,7 @@ export default function InterestForm() {
           <div key={produto} className="flex items-center space-x-2">
             <Checkbox
               id={produto}
+              name="produtos"
               checked={formData.produtos.includes(produto)}
               onCheckedChange={(checked) =>
                 handleCheckboxChange(produto, checked as boolean)
@@ -133,11 +182,12 @@ export default function InterestForm() {
 
       <Button
         type="submit"
-        className="w-full"
-        disabled={createLead.isPending}
+        className="w-full glass-button"
+        disabled={isSubmitting}
       >
-        {createLead.isPending ? "Enviando..." : "Enviar Interesse"}
+        {isSubmitting ? "Enviando..." : "Enviar Interesse"}
       </Button>
     </form>
   );
 }
+
