@@ -66,11 +66,12 @@ export default function Home() {
           isVisible.hero ? "visible" : ""
         }`}
       >
-        <div className="glass-card rounded-3xl p-12 max-w-4xl w-full text-center">
+        <div className="container grid md:grid-cols-2 gap-12 items-center">
+          <div className="glass-card rounded-3xl p-12 text-center md:text-left">
           <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Karla Helfstein
           </h1>
-          <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6"></div>
+          <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 md:mx-0 mx-auto mb-6"></div>
           <p className="text-2xl text-gray-700 mb-8">
             Especialista em Vendas de Consórcio
           </p>
@@ -78,7 +79,7 @@ export default function Home() {
             Aquisição de Imóvel • Veículo • Aumento de Patrimônio
           </p>
 
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-4 justify-center md:justify-start">
             <a
               href="https://wa.me/5562983136222"
               target="_blank"
@@ -109,6 +110,17 @@ export default function Home() {
                 YouTube
               </Button>
             </a>
+          </div>
+        </div>
+          
+          <div className="hidden md:block">
+            <div className="glass-card rounded-3xl p-4 overflow-hidden">
+              <img 
+                src="/karla-hero.jpg" 
+                alt="Karla Helfstein" 
+                className="w-full h-auto rounded-2xl object-cover shadow-2xl"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -170,11 +182,23 @@ export default function Home() {
         className={`py-20 px-4 fade-in-up ${isVisible.about ? "visible" : ""}`}
       >
         <div className="container">
-          <div className="glass-card rounded-3xl p-12 max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-8 text-gray-800">
+          <div className="glass-card rounded-3xl p-12 max-w-6xl mx-auto">
+            <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
               Quem Sou Eu
             </h2>
-            <div className="prose prose-lg max-w-none text-gray-700">
+            
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-8">
+              <div className="order-2 md:order-1">
+                <div className="glass-card rounded-2xl p-4 overflow-hidden">
+                  <img 
+                    src="/karla-about.jpg" 
+                    alt="Karla Helfstein" 
+                    className="w-full h-auto rounded-xl object-cover shadow-xl"
+                  />
+                </div>
+              </div>
+              
+              <div className="prose prose-lg max-w-none text-gray-700 order-1 md:order-2">
               <p className="text-lg leading-relaxed mb-6">
                 Olá! Sou <strong>Karla Helfstein</strong>, especialista em vendas de consórcio
                 com anos de experiência no mercado. Minha missão é ajudar você a realizar
@@ -211,6 +235,7 @@ export default function Home() {
               <p className="text-lg text-center font-semibold text-gray-800">
                 Vamos juntos realizar seus objetivos!
               </p>
+              </div>
             </div>
 
             {/* Depoimentos */}
