@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `leads` (\n  `id` int NOT NULL AUTO_INCREMENT,\n  `nome` varchar(255) NOT NULL,\n  `email` varchar(320) NOT NULL,\n  `whatsapp` varchar(20) NOT NULL,\n  `produtos` text NOT NULL,\n  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`)\n);",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2J26CqBPNbXuxY4.root --database AGiEYCUQMBZNXq6qgyMuJB --execute CREATE TABLE IF NOT EXISTS `leads` (\n  `id` int NOT NULL AUTO_INCREMENT,\n  `nome` varchar(255) NOT NULL,\n  `email` varchar(320) NOT NULL,\n  `whatsapp` varchar(20) NOT NULL,\n  `produtos` text NOT NULL,\n  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`)\n);",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 439
+}

@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { InsertLead, InsertUser, leads, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -85,4 +85,37 @@ export async function getUser(id: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+// Funções para gerenciar leads
+export async function createLead(lead: InsertLead) {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot create lead: database not available");
+    return null;
+  }
+
+  try {
+    const result = await db.insert(leads).values(lead);
+    console.log("[Database] Lead created successfully");
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to create lead:", error);
+    throw error;
+  }
+}
+
+export async function getAllLeads() {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot get leads: database not available");
+    return [];
+  }
+
+  try {
+    const result = await db.select().from(leads).orderBy(leads.createdAt);
+    return result;
+  } catch (error) {
+    console.error("[Database] Failed to get leads:", error);
+    return [];
+  }
+}
+
