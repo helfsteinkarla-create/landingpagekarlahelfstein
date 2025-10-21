@@ -1,76 +1,10 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: oklch(0.985 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(0.985 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(0.985 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.52 0.191 264.05);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.961 0 0);
-    --secondary-foreground: oklch(0.145 0 0);
-    --muted: oklch(0.961 0 0);
-    --muted-foreground: oklch(0.455 0.012 286.75);
-    --accent: oklch(0.961 0 0);
-    --accent-foreground: oklch(0.145 0 0);
-    --destructive: oklch(0.577 0.245 27.33);
-    --destructive-foreground: oklch(0.985 0 0);
-    --border: oklch(0.898 0 0);
-    --input: oklch(0.898 0 0);
-    --ring: oklch(0.52 0.191 264.05);
-    --radius: 0.5rem;
-    --chart-1: oklch(0.647 0.199 16.74);
-    --chart-2: oklch(0.724 0.172 142.5);
-    --chart-3: oklch(0.573 0.184 253.1);
-    --chart-4: oklch(0.763 0.162 70.08);
-    --chart-5: oklch(0.653 0.173 25.72);
-  }
-
-  .dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.145 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.145 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.985 0 0);
-    --primary-foreground: oklch(0.145 0 0);
-    --secondary: oklch(0.212 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.212 0 0);
-    --muted-foreground: oklch(0.638 0.013 286.07);
-    --accent: oklch(0.212 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.522 0.195 27.33);
-    --destructive-foreground: oklch(0.985 0 0);
-    --border: oklch(0.212 0 0);
-    --input: oklch(0.212 0 0);
-    --ring: oklch(0.831 0.016 285.89);
-    --chart-1: oklch(0.745 0.138 70.08);
-    --chart-2: oklch(0.724 0.172 142.5);
-    --chart-3: oklch(0.573 0.184 253.1);
-    --chart-4: oklch(0.763 0.162 70.08);
-    --chart-5: oklch(0.653 0.173 25.72);
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-}
-
 /* Liquid Glass Styles */
 body {
   background: linear-gradient(135deg, #e0f2fe 0%, #ddd6fe 50%, #fce7f3 100%);
   min-height: 100vh;
+  font-feature-settings: "rlig" 1, "calt" 1;
 }
 
 .glass-card {
@@ -108,8 +42,25 @@ body {
 
 /* Container customization */
 .container {
-  @apply mx-auto px-4 sm:px-6 lg:px-8;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
   max-width: 1200px;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 /* YouTube embed responsive */
@@ -129,3 +80,4 @@ body {
   height: 100%;
   border-radius: 1rem;
 }
+

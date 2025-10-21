@@ -16,14 +16,14 @@ export default function InterestForm() {
 
   const createLead = trpc.leads.create.useMutation({
     onSuccess: () => {
-      const message = \`Olá! Tenho interesse em consórcio.
+      const message = `Olá! Tenho interesse em consórcio.
 
-*Nome:* \${formData.nome}
-*Email:* \${formData.email}
-*WhatsApp:* \${formData.whatsapp}
-*Produtos de Interesse:* \${formData.produtos.join(", ")}\`;
+*Nome:* ${formData.nome}
+*Email:* ${formData.email}
+*WhatsApp:* ${formData.whatsapp}
+*Produtos de Interesse:* ${formData.produtos.join(", ")}`;
 
-      const whatsappUrl = \`https://api.whatsapp.com/send/?phone=5562983136222&text=\${encodeURIComponent(message)}&type=phone_number&app_absent=0\`;
+      const whatsappUrl = `https://api.whatsapp.com/send/?phone=5562983136222&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
       
       toast.success("Interesse enviado com sucesso!");
       

@@ -62,9 +62,9 @@ export default function Home() {
       <section
         ref={sectionsRef.hero}
         data-section="hero"
-        className={\`min-h-screen flex items-center justify-center px-4 fade-in-up \${
+        className={`min-h-screen flex items-center justify-center px-4 fade-in-up ${
           isVisible.hero ? "visible" : ""
-        }\`}
+        }`}
       >
         <div className="glass-card rounded-3xl p-12 max-w-4xl w-full text-center">
           <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
@@ -117,7 +117,7 @@ export default function Home() {
       <section
         ref={sectionsRef.videos}
         data-section="videos"
-        className={\`py-20 px-4 fade-in-up \${isVisible.videos ? "visible" : ""}\`}
+        className={`py-20 px-4 fade-in-up ${isVisible.videos ? "visible" : ""}`}
       >
         <div className="container">
           <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
@@ -128,7 +128,7 @@ export default function Home() {
               <div key={video.id} className="glass-card rounded-2xl p-6">
                 <div className="youtube-embed mb-4">
                   <iframe
-                    src={\`https://www.youtube.com/embed/\${video.id}\`}
+                    src={`https://www.youtube.com/embed/${video.id}`}
                     title={video.title}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -148,7 +148,7 @@ export default function Home() {
       <section
         ref={sectionsRef.form}
         data-section="form"
-        className={\`py-20 px-4 fade-in-up \${isVisible.form ? "visible" : ""}\`}
+        className={`py-20 px-4 fade-in-up ${isVisible.form ? "visible" : ""}`}
       >
         <div className="container max-w-2xl">
           <div className="glass-card rounded-3xl p-10">
@@ -167,7 +167,7 @@ export default function Home() {
       <section
         ref={sectionsRef.about}
         data-section="about"
-        className={\`py-20 px-4 fade-in-up \${isVisible.about ? "visible" : ""}\`}
+        className={`py-20 px-4 fade-in-up ${isVisible.about ? "visible" : ""}`}
       >
         <div className="container">
           <div className="glass-card rounded-3xl p-12 max-w-4xl mx-auto">
