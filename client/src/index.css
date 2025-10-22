@@ -149,22 +149,34 @@ body {
 /* YouTube embed responsive */
 .youtube-embed {
   position: relative;
+  display: block;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  height: 0;
+  height: 400px;
   overflow: hidden;
   border-radius: 1rem;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
-  background: rgba(0, 0, 0, 0.2);
+  background: #000;
 }
 
 .youtube-embed:hover {
   transform: scale(1.02);
 }
 
-.youtube-embed iframe,
 .youtube-embed img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0;
+  border-radius: 1rem;
+  object-fit: cover;
+  z-index: 1;
+  display: block !important;
+}
+
+.youtube-embed iframe {
   position: absolute;
   top: 0;
   left: 0;
@@ -172,7 +184,6 @@ body {
   height: 100%;
   border: 0;
   border-radius: 1rem;
-  object-fit: cover;
 }
 
 /* Gradient Text */
