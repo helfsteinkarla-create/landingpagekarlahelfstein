@@ -66,8 +66,8 @@ export default function Home() {
           isVisible.hero ? "visible" : ""
         }`}
       >
-        <div className="container grid md:grid-cols-2 gap-12 items-center">
-          <div className="glass-card rounded-3xl p-12 text-center md:text-left">
+        <div className="container grid md:grid-cols-2 gap-12 items-center relative">
+          <div className="glass-card rounded-3xl p-12 text-center md:text-left relative">
           <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Karla Helfstein
           </h1>
@@ -115,11 +115,20 @@ export default function Home() {
           
           <div className="hidden md:block">
             <div className="glass-card rounded-3xl p-4 overflow-hidden">
-              <img 
-                src="/karla-hero.jpg" 
-                alt="Karla Helfstein" 
-                className="w-full h-auto rounded-2xl object-cover shadow-2xl"
-              />
+              <div className="relative">
+                <img 
+                  src="/karla-hero-new.jpg" 
+                  alt="Karla Helfstein" 
+                  className="w-full h-auto rounded-2xl object-cover shadow-2xl"
+                />
+                <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full overflow-hidden border-4 border-blue-500/30 shadow-2xl">
+                  <img 
+                    src="/karla-hero-circular.jpg" 
+                    alt="Karla Helfstein" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
