@@ -121,9 +121,9 @@ export default function Home() {
                   alt="Karla Helfstein" 
                   className="w-full h-auto rounded-2xl object-cover shadow-2xl"
                 />
-                <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full overflow-hidden border-4 border-blue-500/30 shadow-2xl">
+                <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full overflow-hidden border-4 border-blue-500/30 shadow-2xl bg-gray-900">
                   <img 
-                    src="/karla-hero-circular.jpg" 
+                    src="/karla-circular-face.png" 
                     alt="Karla Helfstein" 
                     className="w-full h-full object-cover"
                   />
