@@ -161,15 +161,30 @@ export default function Home() {
             {videos.map((video, index) => (
               <div key={video.id} className="glass-card video-card rounded-2xl p-6 fade-in-up" style={{transitionDelay: `${index * 0.1}s`}}>
                 <div className="text-4xl text-center mb-4">{video.icon}</div>
-                <div className="youtube-embed mb-4">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${video.id}`}
-                    title={video.title}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
+                <a 
+                  href={`https://www.youtube.com/watch?v=${video.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block youtube-embed mb-4 relative group"
+                >
+                  <img 
+                    src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
+                    alt={video.title}
+                    className="w-full h-full object-cover rounded-xl"
+                    onError={(e) => {
+                      // Fallback to medium quality thumbnail
+                      e.currentTarget.src = `https://img.youtube.com/vi/${video.id}/mqdefault.jpg`;
+                    }}
+                  />
+                  {/* Play button overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-all rounded-xl">
+                    <div className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <svg className="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
+                  </div>
+                </a>
                 <h3 className="text-lg font-semibold text-center text-white">
                   {video.title}
                 </h3>
