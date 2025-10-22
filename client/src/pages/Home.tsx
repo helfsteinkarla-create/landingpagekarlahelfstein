@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-import InterestForm from "@/components/InterestForm";
+import InterestForm from "../components/InterestForm";
+import YouTubeVideo from "../components/YouTubeVideo";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState({
@@ -163,23 +163,13 @@ export default function Home() {
             {videos.map((video, index) => (
               <div
                 key={video.id}
-                className="glass-card video-card rounded-2xl p-6 fade-in-up"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
-                <div className="text-5xl text-center mb-4">{video.icon}</div>
-                <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-                  <iframe
-                    className="absolute top-0 left-0 w-full h-full rounded-xl"
-                    src={`https://www.youtube.com/embed/${video.id}`}
-                    title={video.title}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-                <h3 className="text-xl font-semibold text-center text-white">
-                  {video.title}
-                </h3>
+                <YouTubeVideo
+                  videoId={video.id}
+                  title={video.title}
+                  icon={video.icon}
+                />
               </div>
             ))}
           </div>
