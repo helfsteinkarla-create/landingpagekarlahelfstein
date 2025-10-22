@@ -66,12 +66,23 @@ export default function Home() {
           isVisible.hero ? "visible" : ""
         }`}
       >
-        <div className="container grid md:grid-cols-2 gap-12 items-center relative">
-          <div className="glass-card rounded-3xl p-12 text-center md:text-left relative">
+        <div className="container max-w-2xl mx-auto relative">
+          {/* Foto circular no topo */}
+          <div className="flex justify-center mb-8">
+            <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-blue-500/30 shadow-2xl bg-gray-900">
+              <img 
+                src="/karla-circular-face.png" 
+                alt="Karla Helfstein" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          
+          <div className="glass-card rounded-3xl p-12 text-center">
           <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Karla Helfstein
           </h1>
-          <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 md:mx-0 mx-auto mb-6"></div>
+          <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6"></div>
           <p className="text-2xl text-gray-100 mb-8">
             Especialista em Consórcio
           </p>
@@ -79,7 +90,7 @@ export default function Home() {
             Investimento • Imóveis • Veículo • Cartas Contempladas
           </p>
 
-          <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+          <div className="flex flex-wrap gap-4 justify-center">
             <a
               href="https://wa.me/5562983136222"
               target="_blank"
@@ -112,25 +123,6 @@ export default function Home() {
             </a>
           </div>
         </div>
-          
-          <div className="hidden md:block">
-            <div className="glass-card rounded-3xl p-4 overflow-hidden">
-              <div className="relative">
-                <img 
-                  src="/karla-hero-new.jpg" 
-                  alt="Karla Helfstein" 
-                  className="w-full h-auto rounded-2xl object-cover shadow-2xl"
-                />
-                <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full overflow-hidden border-4 border-blue-500/30 shadow-2xl bg-gray-900">
-                  <img 
-                    src="/karla-circular-face.png" 
-                    alt="Karla Helfstein" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
