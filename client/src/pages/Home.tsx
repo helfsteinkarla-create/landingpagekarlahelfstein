@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import InterestForm from "../components/InterestForm";
+import InterestFormSimple from "../components/InterestFormSimple";
 import YouTubeVideo from "../components/YouTubeVideo";
 
 export default function Home() {
@@ -194,7 +194,7 @@ export default function Home() {
               Preencha o formulário abaixo e entraremos em contato
             </p>
           </div>
-          <InterestForm />
+          <InterestFormSimple />
         </div>
       </section>
 
