@@ -194,7 +194,7 @@ export default function Home() {
               <div className="order-2 md:order-1">
                 <div className="glass-card rounded-2xl p-4 overflow-hidden">
                   <img 
-                    src="/karla-about-clean.png" 
+                    src="/karla-about-new.jpg" 
                     alt="Karla Helfstein" 
                     className="w-full h-auto rounded-xl object-cover shadow-xl"
                   />
