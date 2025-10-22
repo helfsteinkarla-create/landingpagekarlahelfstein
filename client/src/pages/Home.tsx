@@ -71,7 +71,7 @@ export default function Home() {
           <div className="flex justify-center mb-8">
             <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-blue-500/30 shadow-2xl bg-gray-900">
               <img 
-                src="/karla-circular-face.png" 
+                src="/karla-face-circle.png" 
                 alt="Karla Helfstein" 
                 className="w-full h-full object-cover"
               />
