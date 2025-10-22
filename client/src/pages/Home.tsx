@@ -100,30 +100,30 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button className="glass-button flex items-center gap-2 px-6 py-6 text-lg">
+                <button className="glass-button flex items-center gap-2 px-6 py-6 text-lg">
                   <img src="/whatsapp.svg" alt="WhatsApp" className="w-5 h-5 invert" />
                   WhatsApp
-                </Button>
+                </button>
               </a>
               <a
                 href="https://www.instagram.com/karlahelfstein/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button className="glass-button flex items-center gap-2 px-6 py-6 text-lg">
+                <button className="glass-button flex items-center gap-2 px-6 py-6 text-lg">
                   <img src="/instagram.svg" alt="Instagram" className="w-5 h-5 invert" />
                   Instagram
-                </Button>
+                </button>
               </a>
               <a
                 href="https://www.youtube.com/@KarlaHelfstein"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button className="glass-button flex items-center gap-2 px-6 py-6 text-lg">
+                <button className="glass-button flex items-center gap-2 px-6 py-6 text-lg">
                   <img src="/youtube.svg" alt="YouTube" className="w-5 h-5 invert" />
                   YouTube
-                </Button>
+                </button>
               </a>
             </div>
 
@@ -135,9 +135,9 @@ export default function Home() {
                   sectionsRef.form.current?.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
-                <Button className="cta-button px-8 py-6 text-lg font-semibold rounded-full">
+                <button className="cta-button px-8 py-6 text-lg font-semibold rounded-full">
                   ✨ Quero Investir com Segurança
-                </Button>
+                </button>
               </a>
             </div>
           </div>
@@ -299,9 +299,9 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button className="cta-button px-8 py-6 text-lg font-semibold rounded-full">
+                <button className="cta-button px-8 py-6 text-lg font-semibold rounded-full">
                   💬 Falar com Karla no WhatsApp
-                </Button>
+                </button>
               </a>
             </div>
           </div>
