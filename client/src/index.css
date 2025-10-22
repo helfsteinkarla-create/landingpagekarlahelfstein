@@ -163,7 +163,8 @@ body {
   transform: scale(1.02);
 }
 
-.youtube-embed iframe {
+.youtube-embed iframe,
+.youtube-embed img {
   position: absolute;
   top: 0;
   left: 0;
@@ -171,6 +172,7 @@ body {
   height: 100%;
   border: 0;
   border-radius: 1rem;
+  object-fit: cover;
 }
 
 /* Gradient Text */

@@ -45,17 +45,20 @@ export default function Home() {
     {
       id: "l6tsvgJSJ7s",
       title: "Consórcio - Como Funciona",
-      icon: "📚"
+      icon: "📚",
+      thumbnail: "/video1-thumb.jpg"
     },
     {
       id: "E5JldIes7ak",
       title: "Vantagens do Consórcio",
-      icon: "💎"
+      icon: "💎",
+      thumbnail: "/video2-thumb.jpg"
     },
     {
       id: "adv9mw3oJ7Q",
       title: "Investimento em Consórcio",
-      icon: "📈"
+      icon: "📈",
+      thumbnail: "/video3-thumb.jpg"
     },
   ];
 
@@ -168,13 +171,10 @@ export default function Home() {
                   className="block youtube-embed mb-4 relative group"
                 >
                   <img 
-                    src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
+                    src={video.thumbnail}
                     alt={video.title}
                     className="w-full h-full object-cover rounded-xl"
-                    onError={(e) => {
-                      // Fallback to medium quality thumbnail
-                      e.currentTarget.src = `https://img.youtube.com/vi/${video.id}/mqdefault.jpg`;
-                    }}
+                    loading="eager"
                   />
                   {/* Play button overlay */}
                   <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-all rounded-xl">
