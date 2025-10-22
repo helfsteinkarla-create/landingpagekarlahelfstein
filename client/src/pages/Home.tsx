@@ -288,10 +288,10 @@ export default function Home() {
                   <p className="text-gray-100 italic mb-4 text-lg">
                     "Conquistei meu primeiro imóvel através do consórcio com a ajuda da Karla. Gratidão!"
                   </p>
-                  <p className="font-bold text-white text-lg">- Cássia Luana</p>
+                  <p className="font-bold text-white text-lg">- Samuel Ribeiro</p>
                   <a href="https://instagram.com/cassiapba" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1 mt-2">
                     <img src="/instagram.svg" alt="Instagram" className="w-4 h-4" />
-                    @cassiapba
+                    @samuel.ribeiro__1222
                   </a>
                 </div>
               </div>
