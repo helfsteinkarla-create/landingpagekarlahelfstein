@@ -45,14 +45,17 @@ export default function Home() {
     {
       id: "l6tsvgJSJ7s",
       title: "Consórcio - Como Funciona",
+      icon: "📚"
     },
     {
       id: "E5JldIes7ak",
       title: "Vantagens do Consórcio",
+      icon: "💎"
     },
     {
       id: "adv9mw3oJ7Q",
       title: "Investimento em Consórcio",
+      icon: "📈"
     },
   ];
 
@@ -67,9 +70,9 @@ export default function Home() {
         }`}
       >
         <div className="container max-w-2xl mx-auto relative">
-          {/* Foto circular no topo */}
+          {/* Foto circular no topo com animação */}
           <div className="flex justify-center mb-8">
-            <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-blue-500/30 shadow-2xl bg-gray-900">
+            <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-blue-500/30 profile-photo">
               <img 
                 src="/karla-face-circle.png" 
                 alt="Karla Helfstein" 
@@ -79,50 +82,65 @@ export default function Home() {
           </div>
           
           <div className="glass-card rounded-3xl p-12 text-center">
-          <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Karla Helfstein
-          </h1>
-          <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6"></div>
-          <p className="text-2xl text-gray-100 mb-8">
-            Especialista em Consórcio
-          </p>
-          <p className="text-lg text-gray-300 mb-12">
-            Investimento • Imóveis • Veículo • Cartas Contempladas
-          </p>
+            <h1 className="text-6xl font-bold mb-4 gradient-text">
+              Karla Helfstein
+            </h1>
+            <div className="gradient-divider w-32 mx-auto mb-6"></div>
+            <p className="text-2xl text-gray-100 mb-8 font-semibold">
+              Especialista em Consórcio
+            </p>
+            <p className="text-lg text-gray-300 mb-12">
+              Investimento • Imóveis • Veículo • Cartas Contempladas
+            </p>
 
-          <div className="flex flex-wrap gap-4 justify-center">
-            <a
-              href="https://wa.me/5562983136222"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button className="glass-button flex items-center gap-2">
-                <img src="/whatsapp.svg" alt="WhatsApp" className="w-5 h-5 invert" />
-                WhatsApp
-              </Button>
-            </a>
-            <a
-              href="https://instagram.com/karlahelfstein"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button className="glass-button flex items-center gap-2">
-                <img src="/instagram.svg" alt="Instagram" className="w-5 h-5 invert" />
-                Instagram
-              </Button>
-            </a>
-            <a
-              href="https://youtube.com/@karlahelfstein8196"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button className="glass-button flex items-center gap-2">
-                <img src="/youtube.svg" alt="YouTube" className="w-5 h-5 invert" />
-                YouTube
-              </Button>
-            </a>
+            <div className="flex flex-wrap gap-4 justify-center mb-8">
+              <a
+                href="https://wa.me/5562983136222"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button className="glass-button flex items-center gap-2 px-6 py-6 text-lg">
+                  <img src="/whatsapp.svg" alt="WhatsApp" className="w-5 h-5 invert" />
+                  WhatsApp
+                </Button>
+              </a>
+              <a
+                href="https://instagram.com/karlahelfstein"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button className="glass-button flex items-center gap-2 px-6 py-6 text-lg">
+                  <img src="/instagram.svg" alt="Instagram" className="w-5 h-5 invert" />
+                  Instagram
+                </Button>
+              </a>
+              <a
+                href="https://youtube.com/@karlahelfstein8196"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button className="glass-button flex items-center gap-2 px-6 py-6 text-lg">
+                  <img src="/youtube.svg" alt="YouTube" className="w-5 h-5 invert" />
+                  YouTube
+                </Button>
+              </a>
+            </div>
+
+            {/* CTA Destacado */}
+            <div className="mt-8">
+              <a
+                href="#form"
+                onClick={(e) => {
+                  e.preventDefault();
+                  sectionsRef.form.current?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                <Button className="cta-button px-8 py-6 text-lg font-semibold rounded-full">
+                  ✨ Quero Investir com Segurança
+                </Button>
+              </a>
+            </div>
           </div>
-        </div>
         </div>
       </section>
 
@@ -135,12 +153,14 @@ export default function Home() {
         className={`py-20 px-4 fade-in-up ${isVisible.videos ? "visible" : ""}`}
       >
         <div className="container">
-          <h2 className="text-4xl font-bold text-center mb-12 text-white">
+          <h2 className="text-5xl font-bold text-center mb-4 gradient-text">
             Vídeos
           </h2>
+          <div className="gradient-divider w-24 mx-auto mb-12"></div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {videos.map((video) => (
-              <div key={video.id} className="glass-card rounded-2xl p-6">
+            {videos.map((video, index) => (
+              <div key={video.id} className="glass-card video-card rounded-2xl p-6 fade-in-up" style={{transitionDelay: `${index * 0.1}s`}}>
+                <div className="text-4xl text-center mb-4">{video.icon}</div>
                 <div className="youtube-embed mb-4">
                   <iframe
                     src={`https://www.youtube.com/embed/${video.id}`}
@@ -161,16 +181,19 @@ export default function Home() {
 
       {/* Formulário de Interesse Section */}
       <section
+        id="form"
         ref={sectionsRef.form}
         data-section="form"
         className={`py-20 px-4 fade-in-up ${isVisible.form ? "visible" : ""}`}
       >
         <div className="container">
           <div className="glass-card rounded-3xl p-12 max-w-2xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-4 text-white">
+            <div className="text-5xl text-center mb-6">📋</div>
+            <h2 className="text-5xl font-bold text-center mb-4 gradient-text">
               Manifeste seu Interesse
             </h2>
-            <p className="text-center text-gray-300 mb-8">
+            <div className="gradient-divider w-32 mx-auto mb-6"></div>
+            <p className="text-center text-gray-300 mb-8 text-lg">
               Preencha o formulário abaixo e entraremos em contato
             </p>
             <InterestForm />
@@ -186,9 +209,10 @@ export default function Home() {
       >
         <div className="container">
           <div className="glass-card rounded-3xl p-12 max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12 text-white">
+            <h2 className="text-5xl font-bold text-center mb-4 gradient-text">
               Quem Sou Eu
             </h2>
+            <div className="gradient-divider w-32 mx-auto mb-12"></div>
             
             <div className="grid md:grid-cols-2 gap-12 items-center mb-8">
               <div className="order-2 md:order-1">
@@ -196,7 +220,7 @@ export default function Home() {
                   <img 
                     src="/karla-about-new.jpg" 
                     alt="Karla Helfstein" 
-                    className="w-full h-auto rounded-xl object-cover shadow-xl"
+                    className="w-full h-auto rounded-xl object-cover about-image"
                   />
                 </div>
               </div>
@@ -214,23 +238,61 @@ export default function Home() {
               <p className="text-lg leading-relaxed mb-8">
                 Hoje, ensino minha equipe e clientes a enxergarem o consórcio como o que ele realmente é: uma estratégia inteligente de investimento e realização.
               </p>
-              <p className="text-lg text-center font-semibold text-white">
+              <p className="text-xl text-center font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 p-4 rounded-xl">
                 Se você quer aprender a investir com segurança — está no lugar certo.
               </p>
               </div>
             </div>
 
             {/* Depoimentos */}
-            <div className="mt-12">
-              <h3 className="text-2xl font-bold text-center mb-8 text-white">
-                Clientes Satisfeitos
+            <div className="mt-16">
+              <h3 className="text-3xl font-bold text-center mb-2 text-white">
+                ⭐ Clientes Satisfeitos
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white/50 rounded-xl p-6">
-                  <p className="text-gray-100 italic mb-4">
+              <div className="gradient-divider w-24 mx-auto mb-8"></div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="testimonial-card rounded-xl p-8">
+                  <div className="text-4xl mb-4">💬</div>
+                  <p className="text-gray-100 italic mb-4 text-lg">
                     "Realmente é diferente lidar com alguém que de verdade busca a melhor solução para o cliente."
                   </p>
-                  <p className="font-semibold text-white">- Júlio</p>
+                  <p className="font-bold text-white text-lg">- Júlio</p>
+                </div>
+                
+                <div className="testimonial-card rounded-xl p-8">
+                  <div className="text-4xl mb-4">💬</div>
+                  <p className="text-gray-100 italic mb-4 text-lg">
+                    "Profissional excepcional! A Karla me ajudou a entender como o consórcio funciona de verdade."
+                  </p>
+                  <p className="font-bold text-white text-lg">- Daniel Toledo</p>
+                  <a href="https://instagram.com/danieltoledomtor" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1 mt-2">
+                    <img src="/instagram.svg" alt="Instagram" className="w-4 h-4" />
+                    @danieltoledomtor
+                  </a>
+                </div>
+                
+                <div className="testimonial-card rounded-xl p-8">
+                  <div className="text-4xl mb-4">💬</div>
+                  <p className="text-gray-100 italic mb-4 text-lg">
+                    "Atendimento personalizado e transparente. Recomendo de olhos fechados!"
+                  </p>
+                  <p className="font-bold text-white text-lg">- Thaynná Britto</p>
+                  <a href="https://instagram.com/tatabritto_7" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1 mt-2">
+                    <img src="/instagram.svg" alt="Instagram" className="w-4 h-4" />
+                    @tatabritto_7
+                  </a>
+                </div>
+                
+                <div className="testimonial-card rounded-xl p-8">
+                  <div className="text-4xl mb-4">💬</div>
+                  <p className="text-gray-100 italic mb-4 text-lg">
+                    "Conquistei meu primeiro imóvel através do consórcio com a ajuda da Karla. Gratidão!"
+                  </p>
+                  <p className="font-bold text-white text-lg">- Cássia Luana</p>
+                  <a href="https://instagram.com/cassiapba" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1 mt-2">
+                    <img src="/instagram.svg" alt="Instagram" className="w-4 h-4" />
+                    @cassiapba
+                  </a>
                 </div>
               </div>
             </div>
@@ -255,13 +317,13 @@ export default function Home() {
               <h3 className="text-xl font-bold mb-4 text-white">Contato</h3>
               <p className="text-gray-100 mb-2">
                 WhatsApp:{" "}
-                <a href="https://wa.me/5562983136222" className="text-blue-600 hover:underline">
+                <a href="https://wa.me/5562983136222" className="text-blue-400 hover:text-blue-300 hover:underline transition-colors">
                   (62) 98313-6222
                 </a>
               </p>
               <p className="text-gray-100 mb-4">
                 Email:{" "}
-                <a href="mailto:karla@atmaseguros.com.br" className="text-blue-600 hover:underline">
+                <a href="mailto:karla@atmaseguros.com.br" className="text-blue-400 hover:text-blue-300 hover:underline transition-colors">
                   karla@atmaseguros.com.br
                 </a>
               </p>
@@ -270,7 +332,7 @@ export default function Home() {
                   href="https://wa.me/5562983136222"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:opacity-70 transition-opacity"
+                  className="hover:opacity-70 transition-opacity icon-bounce"
                 >
                   <img src="/whatsapp.svg" alt="WhatsApp" className="w-6 h-6" />
                 </a>
@@ -278,7 +340,7 @@ export default function Home() {
                   href="https://instagram.com/karlahelfstein"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:opacity-70 transition-opacity"
+                  className="hover:opacity-70 transition-opacity icon-bounce"
                 >
                   <img src="/instagram.svg" alt="Instagram" className="w-6 h-6" />
                 </a>
@@ -286,7 +348,7 @@ export default function Home() {
                   href="https://youtube.com/@karlahelfstein8196"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:opacity-70 transition-opacity"
+                  className="hover:opacity-70 transition-opacity icon-bounce"
                 >
                   <img src="/youtube.svg" alt="YouTube" className="w-6 h-6" />
                 </a>
@@ -301,3 +363,4 @@ export default function Home() {
     </div>
   );
 }
+
